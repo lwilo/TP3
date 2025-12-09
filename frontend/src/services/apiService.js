@@ -23,7 +23,9 @@ class ApiService {
   async getCourses() {
     try {
       const response = await axios.get(`${API_BASE_URL}/courses`, {
-        headers: this.getAuthHeaders()
+        headers: {
+          ...this.getAuthHeaders()
+        }
       });
       return response.data;
     } catch (error) {
@@ -35,7 +37,10 @@ class ApiService {
   async createCourse(course) {
     try {
       const response = await axios.post(`${API_BASE_URL}/courses`, course, {
-        headers: this.getAuthHeaders()
+        headers: {
+          ...this.getAuthHeaders(),
+          'Content-Type': 'application/json'
+        }
       });
       return response.data;
     } catch (error) {
@@ -47,7 +52,9 @@ class ApiService {
   async getUserInfo() {
     try {
       const response = await axios.get(`${API_BASE_URL}/me`, {
-        headers: this.getAuthHeaders()
+        headers: {
+          ...this.getAuthHeaders()
+        }
       });
       return response.data;
     } catch (error) {
